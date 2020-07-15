@@ -7,7 +7,7 @@ package Form;
 
 
 /**
- *
+ * Store default constant and draw configure
  * @author hailiang194
  */
 public class Default {

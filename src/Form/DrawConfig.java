@@ -8,7 +8,7 @@ package Form;
 import java.awt.Color;
 
 /**
- *
+ * Draw configure
  * @author hailiang194
  */
 public class DrawConfig {

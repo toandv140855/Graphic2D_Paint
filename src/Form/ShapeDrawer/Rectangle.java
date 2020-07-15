@@ -6,7 +6,7 @@
 package Form.ShapeDrawer;
 
 /**
- *
+ * Draw rectangle
  * @author hailiang194
  */
 public class Rectangle implements Form.IShapeDrawer<java.awt.geom.Rectangle2D.Double> {

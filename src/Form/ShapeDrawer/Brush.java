@@ -7,7 +7,7 @@ package Form.ShapeDrawer;
 
 
 /**
- *
+ * Draw dot by brush
  * @author hailiang194
  */
 public class Brush implements Form.IShapeDrawer<java.awt.geom.Ellipse2D.Double>{

@@ -8,7 +8,7 @@ package Form.ShapeDrawer;
 
 
 /**
- *
+ * Draw line
  * @author hailiang194
  */
 public class Line implements Form.IShapeDrawer<java.awt.geom.Line2D.Double>{

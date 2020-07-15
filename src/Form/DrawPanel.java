@@ -8,7 +8,7 @@ package Form;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Draw Panel
  * @author hailiang194
  */
 public class DrawPanel extends javax.swing.JPanel {
@@ -144,6 +144,9 @@ public class DrawPanel extends javax.swing.JPanel {
 		}
 	}
 
+	/**
+	 * clean the painting
+	 */
 	public void clean() {
 		this.openedImg = null;
 		this.shapes.clear();
@@ -151,6 +154,9 @@ public class DrawPanel extends javax.swing.JPanel {
 		this.repaint();
 	}
 	
+	/**
+	 * undo the painting
+	 */
 	public void undo()
 	{
 		if(this.shapes.isEmpty())
@@ -171,6 +177,10 @@ public class DrawPanel extends javax.swing.JPanel {
 		this.repaint();
 	}
 	
+	/**
+	 * get image buffer of painting
+	 * @return 
+	 */
 	public java.awt.image.BufferedImage capture()
 	{
 		java.awt.image.BufferedImage buffered = new java.awt.image.BufferedImage(this.getWidth(), this.getHeight(), java.awt.image.BufferedImage.TYPE_INT_RGB);
@@ -180,6 +190,10 @@ public class DrawPanel extends javax.swing.JPanel {
 		return buffered;
 	}
 
+	/**
+	 * open an image
+	 * @param buffer opened image 
+	 */
 	public void open(BufferedImage buffer) {
 		this.shapes.clear();
 		this.shapesStack.clear();
@@ -187,6 +201,10 @@ public class DrawPanel extends javax.swing.JPanel {
 		this.repaint();
 	}
 	
+	/**
+	 * check if the painting is empty
+	 * @return true if painting is empty, otherwise false
+	 */
 	public boolean isEmpty()
 	{
 		return this.shapes.isEmpty();

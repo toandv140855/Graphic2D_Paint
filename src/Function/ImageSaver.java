@@ -9,7 +9,7 @@ package Function;
 
 
 /**
- *
+ * Save paint to image file
  * @author hailiang194
  */
 public class ImageSaver {

@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 /**
- *
+ * Main form program
  * @author hailiang194
  */
 public class Paint extends javax.swing.JFrame {
@@ -159,8 +159,15 @@ public class Paint extends javax.swing.JFrame {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (!graphic.isEmpty()
-					&& javax.swing.JOptionPane.showConfirmDialog(null, "Do you want to save this painting?", "EXIT", javax.swing.JOptionPane.INFORMATION_MESSAGE, javax.swing.JOptionPane.YES_NO_OPTION) == javax.swing.JOptionPane.YES_OPTION) {
+				
+				if(graphic.isEmpty())
+				{
+					System.exit(0);
+				}
+				
+				int exitOption = javax.swing.JOptionPane.showConfirmDialog(null, "Do you want to save this painting?", "EXIT", javax.swing.JOptionPane.YES_NO_OPTION);
+				
+				if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 					javax.swing.JFileChooser save = new javax.swing.JFileChooser();
 
 					if (save.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
@@ -176,8 +183,11 @@ public class Paint extends javax.swing.JFrame {
 				}
 				
 				System.exit(0);
+				
 			}
 
+			
+			
 		});
 	}
 

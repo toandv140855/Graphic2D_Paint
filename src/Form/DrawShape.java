@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Shape;
 
 /**
- *
+ * Drawn shape object
  * @author hailiang194
  */
 public class DrawShape {
