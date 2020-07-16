@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Main form program
+ *
  * @author hailiang194
  */
 public class Paint extends javax.swing.JFrame {
@@ -30,6 +31,45 @@ public class Paint extends javax.swing.JFrame {
 	private javax.swing.JMenu mEdit;
 	private javax.swing.JMenuItem miUndo;
 	private javax.swing.JMenuItem miRedo;
+
+	private final java.util.ArrayList<javax.swing.JButton> drawFunctionbuttons;
+
+	private javax.swing.JButton setupDrawButton(javax.swing.ImageIcon icon, String toolTipHelp, java.awt.event.ActionListener clickedButton) {
+		javax.swing.JButton button = new javax.swing.JButton(icon);
+		button.setPreferredSize(Default.DISPLAY.BUTTON_SIZE);
+		button.setToolTipText(toolTipHelp);
+		button.setBackground(Default.COLOR.DRAW_BUTTON_BACKGROUND);
+		button.addActionListener(clickedButton);
+
+		this.drawFunctionbuttons.add(button);
+
+		return button;
+	}
+
+	private javax.swing.JButton setupConfigButton(String toolTipHelp, java.awt.event.ActionListener clickedButton) {
+		javax.swing.JButton button = new javax.swing.JButton();
+		button.setPreferredSize(Default.DISPLAY.BUTTON_SIZE);
+		button.setToolTipText(toolTipHelp);
+		button.setBackground(Default.COLOR.DRAW_BUTTON_BACKGROUND);
+		button.addActionListener(clickedButton);
+
+		return button;
+	}
+
+	private void setUnselectDrawButton() {
+		for (javax.swing.JButton drawFunctionbutton : drawFunctionbuttons) {
+			drawFunctionbutton.setBackground(Default.COLOR.DRAW_BUTTON_BACKGROUND);
+		}
+	}
+
+	private javax.swing.JPanel getDrawFunctionContainer(javax.swing.JButton button) {
+		javax.swing.JPanel panel = new javax.swing.JPanel();
+		panel.setBackground(Default.COLOR.PAINT_CONTROL_PANEL);
+
+		panel.add(button);
+
+		return panel;
+	}
 
 	private void initComponent() {
 
@@ -80,66 +120,45 @@ public class Paint extends javax.swing.JFrame {
 
 		//Componenet config
 		javax.swing.JPanel pButton = new javax.swing.JPanel();
+		pButton.setBackground(Default.COLOR.PAINT_CONTROL_PANEL);
 		this.graphic = new DrawPanel();
 		javax.swing.Box box = javax.swing.Box.createHorizontalBox();
 
-		this.btnBrush = new javax.swing.JButton(Default.ICON.BRUSH);
-		this.btnBrush.setToolTipText("Brush mode");
-		this.btnBrush.addActionListener((java.awt.event.ActionEvent e) -> {
+		this.btnBrush = this.setupDrawButton(Default.ICON.BRUSH, "Brush Mode", (java.awt.event.ActionEvent e) -> {
 			btnBrushClicked(e);
 		});
+		javax.swing.JPanel pBrushPlace = this.getDrawFunctionContainer(this.btnBrush);
 
-		javax.swing.JPanel pBrushPlace = new javax.swing.JPanel();
-		pBrushPlace.add(this.btnBrush);
-
-		this.btnLine = new javax.swing.JButton(Default.ICON.LINE);
-		this.btnLine.setToolTipText("Line mode");
-		this.btnLine.addActionListener((java.awt.event.ActionEvent e) -> {
+		this.btnLine = this.setupDrawButton(Default.ICON.LINE, "Line Mode", (java.awt.event.ActionEvent e) -> {
 			btnLineClicked(e);
 		});
+		javax.swing.JPanel pLinePlace = this.getDrawFunctionContainer(this.btnLine);
 
-		javax.swing.JPanel pLinePlace = new javax.swing.JPanel();
-		pLinePlace.add(this.btnLine);
-
-		this.btnEllipse = new javax.swing.JButton(Default.ICON.ELLIPSE);
-		this.btnEllipse.setToolTipText("Ellipse mode");
-		this.btnEllipse.addActionListener((java.awt.event.ActionEvent e) -> {
+		this.btnEllipse = this.setupDrawButton(Default.ICON.ELLIPSE, "Ellipse Mode", (java.awt.event.ActionEvent e) -> {
 			btnEllipseClicked(e);
 		});
+		javax.swing.JPanel pEllipsePlace = this.getDrawFunctionContainer(this.btnEllipse);
 
-		javax.swing.JPanel pEllipsePlace = new javax.swing.JPanel();
-		pEllipsePlace.add(this.btnEllipse);
-
-		this.btnRectangle = new javax.swing.JButton(Default.ICON.RECTANGLE);
-		this.btnRectangle.setToolTipText("Retangle mode");
-		this.btnRectangle.addActionListener((java.awt.event.ActionEvent e) -> {
+		this.btnRectangle = this.setupDrawButton(Default.ICON.RECTANGLE, "Rectangle Mode", (java.awt.event.ActionEvent e) -> {
 			btnRetangleClicked(e);
 		});
+		javax.swing.JPanel pRectanglePlace = this.getDrawFunctionContainer(this.btnRectangle);
 
-		javax.swing.JPanel pRectanglePlace = new javax.swing.JPanel();
-		pRectanglePlace.add(this.btnRectangle);
-
-		this.btnFill = new javax.swing.JButton();
-		this.btnFill.setToolTipText("Choose fill color. If close without choosing, no fill color.");
-		this.btnFill.setPreferredSize(this.btnBrush.getPreferredSize());
-		this.btnFill.setBackground(Default.config.getFillColor());
-		this.btnFill.addActionListener((java.awt.event.ActionEvent e) -> {
+		this.btnFill = this.setupConfigButton("Choose fill color. If close without choosing, no fill color.", (java.awt.event.ActionEvent e) -> {
 			btnFillClicked(e);
 		});
+		this.btnFill.setBackground(Default.config.getFillColor());
+		this.btnFill.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
+		javax.swing.JPanel pFillPlace = this.getDrawFunctionContainer(this.btnFill);
 
-		javax.swing.JPanel pFillPlace = new javax.swing.JPanel();
-		pFillPlace.add(btnFill);
-
-		this.btnStoke = new javax.swing.JButton();
-		this.btnStoke.setToolTipText("Choose stoke color. If close without choosing, no stoke color.");
-		this.btnStoke.setPreferredSize(this.btnBrush.getPreferredSize());
-		this.btnStoke.setBorder(new javax.swing.border.LineBorder(Default.config.getStoke(), Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
-		this.btnStoke.addActionListener((java.awt.event.ActionEvent e) -> {
+		this.btnStoke = this.setupConfigButton("Choose stoke color. If close without choosing, no stoke color.", (java.awt.event.ActionEvent e) -> {
 			btnStokeClicked(e);
 		});
+		this.btnStoke.setBorder(new javax.swing.border.LineBorder(Default.config.getStoke(), Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
+		this.btnStoke.setBackground(java.awt.Color.WHITE);
 
-		javax.swing.JPanel pStokePlace = new javax.swing.JPanel();
-		pStokePlace.add(this.btnStoke);
+		javax.swing.JPanel pStokePlace = this.getDrawFunctionContainer(this.btnStoke);
+		pStokePlace.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE));
 
 		box.add(pBrushPlace);
 		box.add(pLinePlace);
@@ -155,18 +174,18 @@ public class Paint extends javax.swing.JFrame {
 	}
 
 	public Paint() {
+		this.drawFunctionbuttons = new java.util.ArrayList<>();
 		this.initComponent();
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				
-				if(graphic.isEmpty())
-				{
+
+				if (graphic.isEmpty()) {
 					System.exit(0);
 				}
-				
+
 				int exitOption = javax.swing.JOptionPane.showConfirmDialog(null, "Do you want to save this painting?", "EXIT", javax.swing.JOptionPane.YES_NO_OPTION);
-				
+
 				if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 					javax.swing.JFileChooser save = new javax.swing.JFileChooser();
 
@@ -181,43 +200,57 @@ public class Paint extends javax.swing.JFrame {
 						javax.swing.JOptionPane.showConfirmDialog(null, "Error to save file", "ERROR", javax.swing.JOptionPane.ERROR_MESSAGE);
 					}
 				}
-				
+
 				System.exit(0);
-				
+
 			}
 
-			
-			
 		});
+		this.btnBrushClicked(null);
 	}
 
 	private void btnBrushClicked(java.awt.event.ActionEvent e) {
 		Default.config.setDrawShape(new Form.ShapeDrawer.Brush(Default.BRUSH.BRUSH_STOKE_WIDTH, Default.BRUSH.BRUSH_STOKE_HEIGHT));
+		this.setUnselectDrawButton();
+		this.btnBrush.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnLineClicked(java.awt.event.ActionEvent e) {
 		Default.config.setDrawShape(new Form.ShapeDrawer.Line());
+		this.setUnselectDrawButton();
+		this.btnLine.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnEllipseClicked(java.awt.event.ActionEvent e) {
 		Default.config.setDrawShape(new Form.ShapeDrawer.Ellipse());
+		this.setUnselectDrawButton();
+		this.btnEllipse.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnRetangleClicked(java.awt.event.ActionEvent e) {
 		Default.config.setDrawShape(new Form.ShapeDrawer.Rectangle());
+		this.setUnselectDrawButton();
+		this.btnRectangle.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnFillClicked(java.awt.event.ActionEvent e) {
 		java.awt.Color chosen = javax.swing.JColorChooser.showDialog(null, "Choose fill color", Default.config.getFillColor());
-		System.out.println(chosen);
 		Default.config.setFillColor(chosen);
-		this.btnFill.setBackground(chosen);
+		if (chosen != null) {
+			this.btnFill.setBackground(chosen);
+			this.btnFill.setText("");
+		} else {
+			this.btnFill.setBackground(java.awt.Color.WHITE);
+			this.btnFill.setText("NO");
+		}
 	}
 
 	private void btnStokeClicked(java.awt.event.ActionEvent e) {
 		java.awt.Color chosen = javax.swing.JColorChooser.showDialog(null, "Choose fill color", Default.config.getStoke());
-		Default.config.setStoke(chosen);
-		this.btnStoke.setBorder(new javax.swing.border.LineBorder(chosen, Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
+		if (chosen != null) {
+			Default.config.setStoke(chosen);
+			this.btnStoke.setBorder(new javax.swing.border.LineBorder(chosen, Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
+		}
 	}
 
 	private void miNewClicked(java.awt.event.ActionEvent e) {

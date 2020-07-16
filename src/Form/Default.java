@@ -17,6 +17,9 @@ public class Default {
 		public static final java.awt.Color FILL = java.awt.Color.BLACK;
 		public static final java.awt.Color DRAWING_STOKE = java.awt.Color.LIGHT_GRAY;
 		public static final java.awt.Color PAINT_BACKGROUND = java.awt.Color.WHITE;
+		public static final java.awt.Color DRAW_BUTTON_BACKGROUND = new java.awt.Color(0xc06ee0);
+		public static final java.awt.Color SELECTION_DRAW_BUTTON_BACKGROUND = new java.awt.Color(0xcfcbd1);
+		public static final java.awt.Color PAINT_CONTROL_PANEL = new java.awt.Color(0x070708);
 	}
 	
 	public static final class BRUSH
@@ -36,6 +39,7 @@ public class Default {
 	public static final class DISPLAY
 	{
 		public static final int STOKE_BORDER_BUTTON_THICKNESS = 5;
+		public static final java.awt.Dimension BUTTON_SIZE = new java.awt.Dimension(90, 90);
 	}
 	
 	public static final Form.IShapeDrawer SHAPE = new Form.ShapeDrawer.Brush(BRUSH.BRUSH_STOKE_WIDTH, BRUSH.BRUSH_STOKE_HEIGHT);
