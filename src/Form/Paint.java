@@ -147,14 +147,14 @@ public class Paint extends javax.swing.JFrame {
 		this.btnFill = this.setupConfigButton("Choose fill color. If close without choosing, no fill color.", (java.awt.event.ActionEvent e) -> {
 			btnFillClicked(e);
 		});
-		this.btnFill.setBackground(Default.config.getFillColor());
+		this.btnFill.setBackground(DrawConfig.getInstance().getFillColor());
 		this.btnFill.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
 		javax.swing.JPanel pFillPlace = this.getDrawFunctionContainer(this.btnFill);
 
 		this.btnStoke = this.setupConfigButton("Choose stoke color. If close without choosing, no stoke color.", (java.awt.event.ActionEvent e) -> {
 			btnStokeClicked(e);
 		});
-		this.btnStoke.setBorder(new javax.swing.border.LineBorder(Default.config.getStoke(), Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
+		this.btnStoke.setBorder(new javax.swing.border.LineBorder(DrawConfig.getInstance().getStoke(), Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
 		this.btnStoke.setBackground(java.awt.Color.WHITE);
 
 		javax.swing.JPanel pStokePlace = this.getDrawFunctionContainer(this.btnStoke);
@@ -210,32 +210,32 @@ public class Paint extends javax.swing.JFrame {
 	}
 
 	private void btnBrushClicked(java.awt.event.ActionEvent e) {
-		Default.config.setDrawShape(new Form.ShapeDrawer.Brush(Default.BRUSH.BRUSH_STOKE_WIDTH, Default.BRUSH.BRUSH_STOKE_HEIGHT));
+		DrawConfig.getInstance().setDrawShape(new Form.ShapeDrawer.Brush(Default.BRUSH.BRUSH_STOKE_WIDTH, Default.BRUSH.BRUSH_STOKE_HEIGHT));
 		this.setUnselectDrawButton();
 		this.btnBrush.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnLineClicked(java.awt.event.ActionEvent e) {
-		Default.config.setDrawShape(new Form.ShapeDrawer.Line());
+		DrawConfig.getInstance().setDrawShape(new Form.ShapeDrawer.Line());
 		this.setUnselectDrawButton();
 		this.btnLine.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnEllipseClicked(java.awt.event.ActionEvent e) {
-		Default.config.setDrawShape(new Form.ShapeDrawer.Ellipse());
+		DrawConfig.getInstance().setDrawShape(new Form.ShapeDrawer.Ellipse());
 		this.setUnselectDrawButton();
 		this.btnEllipse.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnRetangleClicked(java.awt.event.ActionEvent e) {
-		Default.config.setDrawShape(new Form.ShapeDrawer.Rectangle());
+		DrawConfig.getInstance().setDrawShape(new Form.ShapeDrawer.Rectangle());
 		this.setUnselectDrawButton();
 		this.btnRectangle.setBackground(Default.COLOR.SELECTION_DRAW_BUTTON_BACKGROUND);
 	}
 
 	private void btnFillClicked(java.awt.event.ActionEvent e) {
-		java.awt.Color chosen = javax.swing.JColorChooser.showDialog(null, "Choose fill color", Default.config.getFillColor());
-		Default.config.setFillColor(chosen);
+		java.awt.Color chosen = javax.swing.JColorChooser.showDialog(null, "Choose fill color", DrawConfig.getInstance().getFillColor());
+		DrawConfig.getInstance().setFillColor(chosen);
 		if (chosen != null) {
 			this.btnFill.setBackground(chosen);
 			this.btnFill.setText("");
@@ -246,9 +246,9 @@ public class Paint extends javax.swing.JFrame {
 	}
 
 	private void btnStokeClicked(java.awt.event.ActionEvent e) {
-		java.awt.Color chosen = javax.swing.JColorChooser.showDialog(null, "Choose fill color", Default.config.getStoke());
+		java.awt.Color chosen = javax.swing.JColorChooser.showDialog(null, "Choose fill color", DrawConfig.getInstance().getStoke());
 		if (chosen != null) {
-			Default.config.setStoke(chosen);
+			DrawConfig.getInstance().setStoke(chosen);
 			this.btnStoke.setBorder(new javax.swing.border.LineBorder(chosen, Default.DISPLAY.STOKE_BORDER_BUTTON_THICKNESS));
 		}
 	}

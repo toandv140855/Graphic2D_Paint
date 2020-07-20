@@ -46,5 +46,4 @@ public class Default {
 	
 	public static final String TITLE = "Paint";
 	
-	public static Form.DrawConfig config = new DrawConfig(COLOR.STOKE, COLOR.FILL, SHAPE);
 }

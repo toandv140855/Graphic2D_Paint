@@ -34,7 +34,7 @@ public class DrawPanel extends javax.swing.JPanel {
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
 
-				Form.IShapeDrawer shapeDrawer = Default.config.getDrawShape();
+				Form.IShapeDrawer shapeDrawer = DrawConfig.getInstance().getDrawShape();
 
 				if (shapeDrawer instanceof Form.ShapeDrawer.Brush) {
 					return;
@@ -50,7 +50,7 @@ public class DrawPanel extends javax.swing.JPanel {
 		
 				//This function user to draw shapes that is not brush
 
-				Form.IShapeDrawer shapeDrawer = Default.config.getDrawShape();
+				Form.IShapeDrawer shapeDrawer = DrawConfig.getInstance().getDrawShape();
 
 				if (shapeDrawer instanceof Form.ShapeDrawer.Brush) {
 					return;
@@ -58,8 +58,8 @@ public class DrawPanel extends javax.swing.JPanel {
 				
 				
 				java.awt.Shape shape = (java.awt.Shape) shapeDrawer.draw(start.x, start.y, end.x, end.y);
-				java.awt.Color stoke = Default.config.getStoke();
-				java.awt.Color fill = Default.config.getFillColor();
+				java.awt.Color stoke = DrawConfig.getInstance().getStoke();
+				java.awt.Color fill = DrawConfig.getInstance().getFillColor();
 
 				shapes.add(new Form.DrawShape(shape, fill, stoke));
 				start = null;
@@ -75,15 +75,15 @@ public class DrawPanel extends javax.swing.JPanel {
 			public void mouseDragged(java.awt.event.MouseEvent e) {
 
 
-				Form.IShapeDrawer shapeDrawer = Default.config.getDrawShape();
+				Form.IShapeDrawer shapeDrawer = DrawConfig.getInstance().getDrawShape();
 
 				if (shapeDrawer instanceof Form.ShapeDrawer.Brush) {
 					int x = e.getX();
 					int y = e.getY();
 					
 					java.awt.Shape shape = (java.awt.Shape)shapeDrawer.draw(x, y, x, y);
-					java.awt.Color stoke = Default.config.getStoke();
-					java.awt.Color fill = Default.config.getStoke();
+					java.awt.Color stoke = DrawConfig.getInstance().getStoke();
+					java.awt.Color fill = DrawConfig.getInstance().getFillColor();
 					
 					shapes.add(new DrawShape(shape, fill, stoke));
 				}
@@ -127,7 +127,7 @@ public class DrawPanel extends javax.swing.JPanel {
 
 		//draw temporary shape when user is drawing
 		if (start != null && end != null) {
-			Form.IShapeDrawer shapeDrawer = Default.config.getDrawShape();
+			Form.IShapeDrawer shapeDrawer = DrawConfig.getInstance().getDrawShape();
 
 			if (shapeDrawer instanceof Form.ShapeDrawer.Brush) {
 				return;

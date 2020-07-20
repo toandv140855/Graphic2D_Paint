@@ -13,11 +13,18 @@ import java.awt.Color;
  */
 public class DrawConfig {
 
+	private static DrawConfig instance = new DrawConfig(Default.COLOR.STOKE, Default.COLOR.FILL, Default.SHAPE);
+	
 	private java.awt.Color stoke;
 	private java.awt.Color fillColor;
 	private IShapeDrawer drawShape;
 
-	public DrawConfig(Color stoke, Color fillColor, IShapeDrawer drawShape) {
+	public static DrawConfig getInstance()
+	{
+		return instance;
+	}
+	
+	private DrawConfig(Color stoke, Color fillColor, IShapeDrawer drawShape) {
 		this.stoke = stoke;
 		this.fillColor = fillColor;
 		this.drawShape = drawShape;
