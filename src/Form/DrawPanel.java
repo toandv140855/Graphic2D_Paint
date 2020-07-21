@@ -113,16 +113,17 @@ public class DrawPanel extends javax.swing.JPanel {
 		graphic.setStroke(new java.awt.BasicStroke(4));
 		
 		for (DrawShape shape : shapes) {
-			if(shape.getShape() != null)
-			{
-				graphic.setPaint(shape.getStoke());
-				graphic.draw(shape.getShape());
-			}
 			if(shape.getFill() != null)
 			{
 				graphic.setPaint(shape.getFill());
 				graphic.fill(shape.getShape());
 			}
+			if(shape.getShape() != null)
+			{
+				graphic.setPaint(shape.getStoke());
+				graphic.draw(shape.getShape());
+			}
+			
 		}
 
 		//draw temporary shape when user is drawing
