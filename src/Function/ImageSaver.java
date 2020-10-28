@@ -21,6 +21,10 @@ public class ImageSaver {
 		this.file = file;
 	}
 	
+/*
+function save
+author: namnhhe140797
+*/
 	public void save() throws java.io.IOException
 	{
 		String formatFile = this.file.getAbsolutePath().substring(this.file.getAbsolutePath().lastIndexOf('.') + 1);
