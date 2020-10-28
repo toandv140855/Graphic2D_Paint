@@ -12,6 +12,7 @@ package Main;
  */
 public class Main {
 	public static void main(String[] args) {
+		//Graphic 2D paint program
 		Form.Paint paint = new Form.Paint();
 		paint.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 		paint.setTitle(Form.Default.TITLE);
