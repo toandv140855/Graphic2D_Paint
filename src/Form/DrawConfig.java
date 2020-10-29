@@ -9,7 +9,7 @@ import java.awt.Color;
 
 /**
  * Draw configure
- * @author hailiang194
+ * @author toandvhe140855
  */
 public class DrawConfig {
 
