@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Draw Panel
- * @author hailiang194
+ * @author toandvhe140855
  */
 public class DrawPanel extends javax.swing.JPanel {
 
